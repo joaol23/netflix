@@ -6,7 +6,6 @@ function init() {
 
 init();
 
-
 function montaElemento() {
     let html = '< class="carrossel-filmes"><div class="owl-carousel owl-theme">';
 
@@ -64,6 +63,22 @@ function windowScroll() {
     });
 }
 
+const base_url = "https://api.jikan.moe/v3";
+
+
+function searchAnime(event) {
+    fetch(`${base_url}/anime/32`)
+        .then(res => res.json())
+        .then(testefunction);
+}
+
+function testefunction(data) {
+    const animeByCategories = data;
+
+    console.log(animeByCategories.image_url);
+}
+
+searchAnime();
 $('.arrow').hover(function () {
     $(this).toggleClass('active-teste');
 });
