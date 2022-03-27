@@ -141,25 +141,6 @@
      width: 60%;
  }
 
- /* reponsivo */
-
- @media screen and (max-width:700px) {
-     header .container {
-         display: flex;
-         flex-direction: column;
-     }
-
-     .button {
-         margin-top: 10px;
-     }
- }
-
- @media screen and (min-width: 1000px) {
-     .sinopse {
-         width: 50%;
-     }
- }
-
  .carrossel-filmes {
      margin-top: 15px;
  }
@@ -223,3 +204,30 @@
  header .profile img:hover{
      cursor: pointer;
  }
+
+ 
+ /* reponsivo */
+
+ @media screen and (max-width:700px) {
+    header .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .button {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container-right nav {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 1000px) {
+    .sinopse {
+        width: 50%;
+    }
+}
