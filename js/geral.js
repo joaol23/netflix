@@ -64,7 +64,7 @@ function windowScroll() {
 
 async function makeListAnimes() {
     for (i = 1; i <= 10; i++) {
-        var number = Math.floor(Math.random() * 100) + 20;
+        var number = Math.floor(Math.random() * 1400) + 200;
 
         await animes(number).then(data => {console.log(i); i != 10 ? montaLista(data) : finalizaLista(data)});
     }
@@ -79,21 +79,21 @@ async function animes(num) {
 
 function montaLista(data) {
     listAnime += '<div class="item">' +
-        '<div style="height:400px;background-image: url(' + trataDataImage(data.image_url) + ');background-size: cover;background-repeat: no-repeat;">' +
+        '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
         '</div>' +
         '</div>';
 }
 
 function finalizaLista(data) {
     listAnime += '<div class="item">' +
-        '<div style="height:400px;background-image: url(' + trataDataImage(data.image_url) + ');background-size: cover;background-repeat: no-repeat;">' +
+        '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
         '</div>' +
         '</div>';
     montaElemento();
 }
 
 function trataDataImage(image){
-    return (image == null ? './img/mini-1.jpg' : image);
+    return (image == null ? './img/mini-1.png' : image);
 }
 
 

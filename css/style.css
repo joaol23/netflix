@@ -205,6 +205,11 @@
      cursor: pointer;
  }
 
+ .item div{
+    height:400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+ }
  
  /* reponsivo */
 
