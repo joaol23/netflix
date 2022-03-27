@@ -18,7 +18,8 @@ function montaElemento() {
 }
 
 function createList(html) {
-    $('body').after(html);
+    $('body').append(html);
+    $('.bloco-loading').css("display", "none");
     makeCarousel();
 }
 
@@ -66,7 +67,7 @@ async function makeListAnimes() {
     for (i = 1; i <= 10; i++) {
         var number = Math.floor(Math.random() * 1400) + 200;
 
-        await animes(number).then(data => {console.log(i); i != 10 ? montaLista(data) : finalizaLista(data)});
+        await animes(number).then(data => { console.log(i); i != 10 ? montaLista(data) : finalizaLista(data) });
     }
 }
 
@@ -92,7 +93,7 @@ function finalizaLista(data) {
     montaElemento();
 }
 
-function trataDataImage(image){
+function trataDataImage(image) {
     return (image == null ? './img/mini-1.png' : image);
 }
 

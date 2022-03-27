@@ -201,38 +201,67 @@
      transform: rotate(45deg);
  }
 
- header .profile img:hover{
+ header .profile img:hover {
      cursor: pointer;
  }
 
- .item div{
-    height:400px;
-    background-size: cover;
-    background-repeat: no-repeat;
+ .item div {
+     height: 400px;
+     background-size: cover;
+     background-repeat: no-repeat;
  }
- 
+
+ .bloco-loading {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-top: 20px;
+     margin-bottom: 20px;
+ }
+
+ .loader {
+     border: 4px solid #f3f3f3;
+     /* Light grey */
+     border-top: 4px solid #6d899b;
+     /* Blue */
+     border-radius: 50%;
+     width: 80px;
+     height: 80px;
+     animation: spin 2s linear infinite;
+ }
+
+ @keyframes spin {
+     0% {
+         transform: rotate(0deg);
+     }
+
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+
  /* reponsivo */
 
  @media screen and (max-width:700px) {
-    header .container {
-        display: flex;
-        flex-direction: column;
-    }
+     header .container {
+         display: flex;
+         flex-direction: column;
+     }
 
-    .button {
-        margin-top: 10px;
-    }
-}
+     .button {
+         margin-top: 10px;
+     }
+ }
 
-@media screen and (max-width: 900px) {
-    .container-right nav {
-        display: none;
-    }
-}
+ @media screen and (max-width: 900px) {
+     .container-right nav {
+         display: none;
+     }
+ }
 
 
-@media screen and (min-width: 1000px) {
-    .sinopse {
-        width: 50%;
-    }
-}
+ @media screen and (min-width: 1000px) {
+     .sinopse {
+         width: 50%;
+     }
+ }
