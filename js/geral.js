@@ -1,27 +1,25 @@
+var listAnime = '';
+
 function init() {
-    createList();
-    makeCarousel();
+    makeListAnimes();
     windowScroll();
 }
 
 init();
 
 function montaElemento() {
-    let html = '< class="carrossel-filmes"><div class="owl-carousel owl-theme">';
+    let html = '<div class="carrossel-filmes"><div class="owl-carousel owl-theme">';
 
-    for (let i = 1; i <= 10; i++) {
-        html += '<div class="item" data-numero-imagem=' + i + '>' +
-            '<div class="imagem-' + i + '" style="height:400px;background-image: url(../img/mini-' + i + '.jpg);background-size: contain;background-repeat: no-repeat;">' +
-            '</div>' +
-            '</div>';
-    }
+    html += listAnime;
+
 
     html += '</div></div>';
-    return html;
+    createList(html);
 }
 
-function createList() {
-    $('body').after(montaElemento());
+function createList(html) {
+    $('body').after(html);
+    makeCarousel();
 }
 
 function makeCarousel() {
@@ -63,22 +61,42 @@ function windowScroll() {
     });
 }
 
-const base_url = "https://api.jikan.moe/v3";
 
+async function makeListAnimes() {
+    for (i = 1; i <= 10; i++) {
+        var number = Math.floor(Math.random() * 100) + 20;
 
-function searchAnime(event) {
-    fetch(`${base_url}/anime/32`)
-        .then(res => res.json())
-        .then(testefunction);
+        await animes(number).then(data => {console.log(i); i != 10 ? montaLista(data) : finalizaLista(data)});
+    }
 }
 
-function testefunction(data) {
-    const animeByCategories = data;
+async function animes(num) {
+    const base_url = "https://api.jikan.moe/v3";
 
-    console.log(animeByCategories.image_url);
+    var teste = await fetch(`${base_url}/anime/${num}`);
+    return await teste.json();
 }
 
-searchAnime();
+function montaLista(data) {
+    listAnime += '<div class="item">' +
+        '<div style="height:400px;background-image: url(' + trataDataImage(data.image_url) + ');background-size: cover;background-repeat: no-repeat;">' +
+        '</div>' +
+        '</div>';
+}
+
+function finalizaLista(data) {
+    listAnime += '<div class="item">' +
+        '<div style="height:400px;background-image: url(' + trataDataImage(data.image_url) + ');background-size: cover;background-repeat: no-repeat;">' +
+        '</div>' +
+        '</div>';
+    montaElemento();
+}
+
+function trataDataImage(image){
+    return (image == null ? './img/mini-1.jpg' : image);
+}
+
+
 $('.arrow').hover(function () {
     $(this).toggleClass('active-teste');
 });
