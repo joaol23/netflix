@@ -1,3 +1,28 @@
+
+function montaElemento() {
+    let html = '< class="carrossel-filmes"><div class="owl-carousel owl-theme">';
+
+    for (let i = 1; i <= 10; i++) {
+        html += '<div class="item" data-numero-imagem=' + i + '>' +
+            '<div class="imagem-' + i + '" style="height:400px;background-image: url(../img/mini-' + i + '.jpg);background-size: contain;background-repeat: no-repeat;">' +
+            '</div>' +
+            '</div>';
+    }
+
+    html += '</div></div>';
+    return html;
+}
+
+$('.arrow').hover(function () {
+    $(this).toggleClass('active-teste');
+});
+
+$('.profile img').hover(function () {
+    $('.arrow').toggleClass('active-teste');
+});
+
+$('body').after(montaElemento());
+
 $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
@@ -23,12 +48,12 @@ $(window).on("scroll", function () {
         //remove the background property so it comes transparent again (defined in your css)
         $("header .container").css('background-color', 'rgba(0, 0, 0, .10)');
     }
-    
+
     if ($(window).scrollTop() > 110) {
         $("header .container").css('background-color', 'rgba(0,0,0, .70)');
-    } 
-    
+    }
+
     if ($(window).scrollTop() > 150) {
         $("header .container").css('background-color', 'rgba(0,0,0)');
-    } 
+    }
 });

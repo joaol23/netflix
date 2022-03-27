@@ -1,163 +1,225 @@
  :root {
-    --vermelho: #E50914;
-    --preto: #141414;
-}
-    
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-    
-body {
-    background-color: var(--preto);
-    font-family: 'Times New Roman', Times, serif;
-    color: white;
-}
-    
-header{
-    position: fixed;
-    width: 100%;
-    background-color: rgba(0, 0, 0, .10);
-    z-index: 9999;
-}
+     --vermelho: #E50914;
+     --preto: #141414;
+ }
 
-header .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
+ * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+ }
 
-header .container-right{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
+ body {
+     background-color: var(--preto);
+     font-family: 'Times New Roman', Times, serif;
+     color: white;
+ }
 
-header .container-left{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 20px;
-}
+ header {
+     position: fixed;
+     width: 100%;
+     background-color: rgba(0, 0, 0, .10);
+     z-index: 9999;
+ }
 
-header .icon-header{
-    font-size: 20px;
-    margin-right: 20px;
-}
+ header .container {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+ }
 
-header .profile{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+ header .container-right {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+ }
 
-header .profile img{
-    margin-right: 10px;
-    border-radius: 5px;
-}
+ header .container-left {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-end;
+     margin-right: 20px;
+ }
 
-header .active{
-    background-color: var(--preto);
-}
-    
-header .titulo-secundario {
-    color: var(--vermelho);
-    font-family: 'Arial Black', Times;
-    font-size: 40px;
-    margin-left: 35px;
-}
-    
-header nav a {
-    text-decoration: none;
-    color: #AAA;
-    font-size: 14px;
-    margin-left: 30px;
-}
-    
-header nav a:hover {
-    color: #fff;
-}
-/* Filme principal */
-    
-main {
-    background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/capa-fundo-friends.jpg);
-    height: 70%;
-}
+ header .icon-header {
+     font-size: 20px;
+     margin-right: 20px;
+ }
 
-.filme-principal {
-    font-size: 16px;
-    height: 550px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-    
-.filme-principal .titulo-filme-principal {
-    margin-top: 15%;
-    font-size: 40px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-    
-.filme-principal .sinopse {
-    margin-top: 15px;
-    margin-bottom: 30px;
-}
+ header .profile {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
 
-.buttons{
-    margin-bottom: 15px;
-} 
+ header .profile img {
+     margin-right: 10px;
+     border-radius: 5px;
+ }
 
-.button {
-    background-color: rgba(0, 0, 0, .50);
-    border: none;
-    color: white;
-    padding: 15px 30px;
-    margin-right: 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.5s;
-    border-radius: 5px;
-}
-    
-.button:hover {
-    background-color: white;
-    color: black;
-}
-    
-.button i {
-    margin-right: 5px;
-}
-    
-.filme-principal .container {
-    margin-left: 35px;
-    width: 60%;
-}
-/* reponsivo */
-    
-@media screen and (max-width:700px) {
-    header .container {
-        display: flex;
-        flex-direction: column;
-    }
-        
-    .button {
-        margin-top: 10px;
-    }
-}
-    
-@media screen and (min-width: 1000px) {
-    .sinopse {
-        width: 50%;
-    }
-}
+ header .active {
+     background-color: var(--preto);
+ }
 
-.carrossel-filmes{
-    margin-top: 15px;
-}
+ header .titulo-secundario {
+     color: var(--vermelho);
+     font-family: 'Arial Black', Times;
+     font-size: 40px;
+     margin-left: 35px;
+ }
+
+ header nav a {
+     text-decoration: none;
+     color: #AAA;
+     font-size: 14px;
+     margin-left: 30px;
+ }
+
+ header nav a:hover {
+     color: #fff;
+ }
+
+ /* Filme principal */
+
+ main {
+     background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/capa-fundo-friends.jpg);
+     height: 70%;
+ }
+
+ .filme-principal {
+     font-size: 16px;
+     height: 550px;
+     background-size: cover;
+     background-repeat: no-repeat;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+ }
+
+ .filme-principal .titulo-filme-principal {
+     margin-top: 15%;
+     font-size: 40px;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+
+ .filme-principal .sinopse {
+     margin-top: 15px;
+     margin-bottom: 30px;
+ }
+
+ .buttons {
+     margin-bottom: 15px;
+ }
+
+ .button {
+     background-color: rgba(0, 0, 0, .50);
+     border: none;
+     color: white;
+     padding: 15px 30px;
+     margin-right: 10px;
+     font-size: 12px;
+     cursor: pointer;
+     transition: 0.5s;
+     border-radius: 5px;
+ }
+
+ .button:hover {
+     background-color: white;
+     color: black;
+ }
+
+ .button i {
+     margin-right: 5px;
+ }
+
+ .filme-principal .container {
+     margin-left: 35px;
+     width: 60%;
+ }
+
+ /* reponsivo */
+
+ @media screen and (max-width:700px) {
+     header .container {
+         display: flex;
+         flex-direction: column;
+     }
+
+     .button {
+         margin-top: 10px;
+     }
+ }
+
+ @media screen and (min-width: 1000px) {
+     .sinopse {
+         width: 50%;
+     }
+ }
+
+ .carrossel-filmes {
+     margin-top: 15px;
+ }
+
+ .item div:hover {
+     cursor: pointer;
+ }
+
+ .icon-header i:hover {
+     cursor: pointer;
+ }
+
+ .profile i:hover {
+     cursor: pointer;
+ }
+
+ .fa-sort-down:hover {
+     transform-origin: 0% 50%;
+     animation: slide4 0.5s linear infinite;
+ }
+
+ .profile .arrow:hover {
+     cursor: pointer;
+ }
+
+ .arrow {
+     width: 1.25rem;
+     height: 1.25rem;
+     display: inline-block;
+     position: relative;
+ }
+
+ .arrow span {
+     top: 0.5rem;
+     position: absolute;
+     width: 0.75rem;
+     height: 0.1rem;
+     background-color: #efefef;
+     display: inline-block;
+     transition: all 0.2s ease;
+ }
+
+ .arrow span:first-of-type {
+     left: 0;
+     transform: rotate(45deg);
+ }
+
+ .arrow span:last-of-type {
+     right: 0;
+     transform: rotate(-45deg);
+ }
+
+ .arrow.active-teste span:first-of-type {
+     transform: rotate(-45deg);
+ }
+
+ .arrow.active-teste span:last-of-type {
+     transform: rotate(45deg);
+ }
+
+ header .profile img:hover{
+     cursor: pointer;
+ }
