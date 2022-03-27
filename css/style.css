@@ -86,7 +86,8 @@
 
  main {
      background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/capa-fundo-friends.jpg);
-     height: 70%;
+     height: 70%;     
+    background-size: cover;
  }
 
  .filme-principal {
