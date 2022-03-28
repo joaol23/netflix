@@ -8,7 +8,7 @@ function init() {
 init();
 
 function montaElemento() {
-    let html = '<div class="carrossel-filmes"><div class="owl-carousel owl-theme">';
+    let html = '<div class="carrossel-filmes"><div class="bloco-subtitulo"><h2 class="subtitulo">Animes</h2></div><div class="owl-carousel owl-theme">';
 
     html += listAnime;
 
@@ -26,7 +26,7 @@ function createList(html) {
 function makeCarousel() {
     $('.owl-carousel').owlCarousel({
         loop: true,
-        margin: 10,
+        margin: 5,
         nav: false,
         responsive: {
             0: {
@@ -100,6 +100,23 @@ function trataDataImage(image) {
     return (image == null ? './img/mini-1.png' : image);
 }
 
+function trataToggle(){    
+    if ($(window).width() < 720) {
+        $('nav').hide();
+        $('.nav-toggle i').removeClass('fa-xmark');
+    } else {
+        $('nav').show();
+    }
+}
+
+$(document).ready(function(){
+    trataToggle();
+})
+
+
+$(window).on('resize', function () {
+    trataToggle();
+})
 
 $('.arrow').hover(function () {
     $(this).toggleClass('active-teste');
@@ -108,3 +125,8 @@ $('.arrow').hover(function () {
 $('.profile img').hover(function () {
     $('.arrow').toggleClass('active-teste');
 });
+
+$('.nav-toggle').on('click', function () {
+    $('.nav-toggle i').toggleClass('fa-xmark')
+    $('nav').slideToggle();
+})

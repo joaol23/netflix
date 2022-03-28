@@ -86,8 +86,8 @@
 
  main {
      background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/capa-fundo-friends.jpg);
-     height: 70%;     
-    background-size: cover;
+     height: 70%;
+     background-size: cover;
  }
 
  .filme-principal {
@@ -144,6 +144,8 @@
 
  .carrossel-filmes {
      margin-top: 15px;
+     margin-right: 15px;
+     margin-left: 15px;
  }
 
  .item div:hover {
@@ -198,6 +200,20 @@
      transform: rotate(-45deg);
  }
 
+ .bloco-subtitulo{
+     margin: 5px 0;
+ }
+
+ .subtitulo{
+     font-family: cursive;
+     font-weight: 700;
+     font-size: 26px;
+ }
+
+ .subtitulo:hover {
+     cursor: pointer;
+ }
+
  .arrow.active-teste span:last-of-type {
      transform: rotate(45deg);
  }
@@ -207,9 +223,11 @@
  }
 
  .item div {
-     height: 400px;
+     height: 300px;
+     width: 250px;
      background-size: cover;
      background-repeat: no-repeat;
+     transition: 0.5s;
  }
 
  .bloco-loading {
@@ -231,6 +249,13 @@
      animation: spin 2s linear infinite;
  }
 
+ .nav-toggle{
+     display: none;
+     position: absolute;
+     top: 1.25rem;
+     right: 1.25rem;
+ }
+
  @keyframes spin {
      0% {
          transform: rotate(0deg);
@@ -243,20 +268,43 @@
 
  /* reponsivo */
 
- @media screen and (max-width:700px) {
-     header .container {
-         display: flex;
-         flex-direction: column;
-     }
-
+ @media screen and (max-width: 720px) {
      .button {
          margin-top: 10px;
+     }
+
+     header .container {
+         background-color: #000 !important;
+     }
+
+     header .container-right{
+         width: 100%;
+         flex-direction: column;
+         align-items: flex-start;
+     }
+
+     nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        width: 100%;
+     }
+
+     nav a {
+         padding: 1.25rem 0;
+         font-size: 26px !important;
+         margin: 0 !important;
+     }
+
+     .nav-toggle {
+         display: block;
      }
  }
 
  @media screen and (max-width: 900px) {
-     .container-right nav {
-         display: none;
+     header .container-left {
+         display: none !important;
      }
  }
 
