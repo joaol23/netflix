@@ -74,7 +74,7 @@
  header nav a {
      text-decoration: none;
      color: #AAA;
-     font-size: 14px;
+     font-size: 16px;
      margin-left: 30px;
  }
 
@@ -85,9 +85,12 @@
  /* Filme principal */
 
  main {
-     background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/capa-fundo-friends.jpg);
-     height: 70%;
+     background-image: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50) 100%), url(../img/onePiec.gif);
+     height: 100%;
+     width: 100%;
+     position: absolute;
      background-size: cover;
+     top: 0;
  }
 
  .filme-principal {
@@ -143,7 +146,7 @@
  }
 
  .carrossel-filmes {
-     margin-top: 15px;
+     margin-top: 40%;
      margin-right: 15px;
      margin-left: 15px;
  }
@@ -200,14 +203,16 @@
      transform: rotate(-45deg);
  }
 
- .bloco-subtitulo{
+ .bloco-subtitulo {
+     position: relative;
      margin: 5px 0;
  }
 
- .subtitulo{
+ .subtitulo {
      font-family: cursive;
      font-weight: 700;
      font-size: 26px;
+     display: inline-block;
  }
 
  .subtitulo:hover {
@@ -224,17 +229,18 @@
 
  .item div {
      height: 300px;
-     width: 250px;
+     width: 100%;
      background-size: cover;
      background-repeat: no-repeat;
      transition: 0.5s;
+     border-radius: 5px;
  }
 
  .bloco-loading {
      display: flex;
      align-items: center;
      justify-content: center;
-     margin-top: 20px;
+     margin-top: 43%;
      margin-bottom: 20px;
  }
 
@@ -249,7 +255,15 @@
      animation: spin 2s linear infinite;
  }
 
- .nav-toggle{
+ .texto-loader {
+     position: relative;
+     display: block;
+     font-size: 40px;
+     color: #fff700;
+     left: -49px;
+ }
+
+ .nav-toggle {
      display: none;
      position: absolute;
      top: 1.25rem;
@@ -277,18 +291,18 @@
          background-color: #000 !important;
      }
 
-     header .container-right{
+     header .container-right {
          width: 100%;
          flex-direction: column;
          align-items: flex-start;
      }
 
      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-        width: 100%;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         width: 100%;
      }
 
      nav a {
@@ -300,6 +314,14 @@
      .nav-toggle {
          display: block;
      }
+
+     .carrossel-filmes {
+         margin-top: 80% !important;
+     }
+
+     .bloco-loading {
+         margin-top: 85% !important;
+     }
  }
 
  @media screen and (max-width: 900px) {
@@ -309,8 +331,36 @@
  }
 
 
- @media screen and (min-width: 1000px) {
+ @media screen and (max-width: 1000px) {
      .sinopse {
          width: 50%;
+     }
+
+     .carrossel-filmes {
+         margin-top: 60%;
+     }
+
+     .bloco-loading {
+         margin-top: 65%;
+     }
+ }
+
+
+ @media screen and (max-width: 650px) {
+
+     main .filme-principal {
+         display: none !important;
+     }
+
+     main {
+         background-image: none;
+     }
+
+     .carrossel-filmes {
+         margin-top: 20% !important;
+     }
+
+     .bloco-loading {
+         margin-top: 60% !important;
      }
  }

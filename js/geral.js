@@ -26,7 +26,7 @@ function createList(html) {
 function makeCarousel() {
     $('.owl-carousel').owlCarousel({
         loop: true,
-        margin: 5,
+        margin: 10,
         nav: false,
         responsive: {
             0: {
@@ -67,10 +67,10 @@ function windowScroll() {
 
 
 async function makeListAnimes() {
-    for (i = 1; i <= 10; i++) {
+    for (i = 1; i <= 8; i++) {
         var number = Math.floor(Math.random() * 1400) + 200;
 
-        await animes(number).then(data => { console.log(i); i != 10 ? montaLista(data) : finalizaLista(data) });
+        await animes(number).then(data => { console.log(i); i != 8 ? montaLista(data) : finalizaLista(data) });
     }
 }
 
@@ -86,6 +86,9 @@ function montaLista(data) {
         '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
         '</div>' +
         '</div>';
+
+    let number = parseInt($('.texto-loader').text());
+    $('.texto-loader').text(number - 1);
 }
 
 function finalizaLista(data) {
@@ -101,7 +104,7 @@ function trataDataImage(image) {
 }
 
 function trataToggle(){    
-    if ($(window).width() < 720) {
+    if ($(window).width() <= 720) {
         $('nav').hide();
         $('.nav-toggle i').removeClass('fa-xmark');
     } else {
