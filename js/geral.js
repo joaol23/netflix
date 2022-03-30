@@ -68,7 +68,7 @@ function windowScroll() {
 
 async function makeListAnimes() {
     for (i = 1; i <= 8; i++) {
-        var number = Math.floor(Math.random() * 1400) + 200;
+        var number = Math.floor(Math.random() * 2500) + 100;
 
         await animes(number).then(data => { console.log(i); i != 8 ? montaLista(data) : finalizaLista(data) });
     }
@@ -82,6 +82,10 @@ async function animes(num) {
 }
 
 function montaLista(data) {
+    console.log(data.genres);
+    if (data.status != 404) {
+        data.genres.forEach((value) => { if (value.name == 'Hentai') { data.image_url = null; } });
+    }
     listAnime += '<div class="item">' +
         '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
         '</div>' +
@@ -103,7 +107,7 @@ function trataDataImage(image) {
     return (image == null ? './img/mini-1.png' : image);
 }
 
-function trataToggle(){    
+function trataToggle() {
     if ($(window).width() <= 720) {
         $('nav').hide();
         $('.nav-toggle i').removeClass('fa-xmark');
@@ -112,7 +116,7 @@ function trataToggle(){
     }
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     trataToggle();
 })
 
