@@ -113,6 +113,8 @@
  .filme-principal .sinopse {
      margin-top: 15px;
      margin-bottom: 30px;
+     font-size: 16px;
+     font-family: sans-serif;
  }
 
  .buttons {
@@ -206,6 +208,9 @@
  .bloco-subtitulo {
      position: relative;
      margin: 5px 0;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
  }
 
  .subtitulo {
@@ -262,6 +267,18 @@
      color: #fff700;
      left: -49px;
  }
+
+ .text {
+     display: none;
+     margin-left: 5px;
+     height: 18px !important;
+     margin-top: 12px;
+ }
+
+ .text i {
+     font-size: 10px;
+ }
+
 
  .nav-toggle {
      display: none;

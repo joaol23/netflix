@@ -1,4 +1,5 @@
 var listAnime = '';
+const ERROR_NOT_FOUND = 404;
 
 function init() {
     makeListAnimes();
@@ -8,7 +9,7 @@ function init() {
 init();
 
 function montaElemento() {
-    let html = '<div class="carrossel-filmes"><div class="bloco-subtitulo"><h2 class="subtitulo">Animes</h2></div><div class="owl-carousel owl-theme">';
+    let html = '<div class="carrossel-filmes"><div class="bloco-subtitulo"><h2 class="subtitulo">Animes</h2><div class="text">Explorar mais <i class="fa-solid fa-angles-right"></i></div></div><div class="owl-carousel owl-theme">';
 
     html += listAnime;
 
@@ -21,6 +22,7 @@ function createList(html) {
     $('body').append(html);
     $('.bloco-loading').css("display", "none");
     makeCarousel();
+    testes();
 }
 
 function makeCarousel() {
@@ -83,7 +85,7 @@ async function animes(num) {
 
 function montaLista(data) {
     console.log(data.genres);
-    if (data.status != 404) {
+    if (data.status != ERROR_NOT_FOUND) {
         data.genres.forEach((value) => { if (value.name == 'Hentai') { data.image_url = null; } });
     }
     listAnime += '<div class="item">' +
@@ -137,3 +139,14 @@ $('.nav-toggle').on('click', function () {
     $('.nav-toggle i').toggleClass('fa-xmark')
     $('nav').slideToggle();
 })
+
+function testes() {
+    $(".subtitulo").hover(function () {
+        $(".text").animate({
+            left: "+=50",
+            width: "toggle"
+        });
+    })
+}
+
+testes();
