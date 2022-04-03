@@ -1,9 +1,12 @@
 var listAnime = '';
 const ERROR_NOT_FOUND = 404;
-
+const ERROR_TO_MUCH_REQUEST = 429;
+const base_url = "https://api.jikan.moe/v4";
+const ERROR_INTERNAL_SERVER = 500;
 function init() {
     makeListAnimes();
     windowScroll();
+    makeListAnimes();
 }
 
 init();
@@ -22,7 +25,7 @@ function createList(html) {
     $('body').append(html);
     $('.bloco-loading').css("display", "none");
     makeCarousel();
-    testes();
+    showText();
 }
 
 function makeCarousel() {
@@ -71,41 +74,46 @@ function windowScroll() {
 async function makeListAnimes() {
     for (i = 1; i <= 8; i++) {
         var number = Math.floor(Math.random() * 3500) + 100;
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 400));
         await animes(number).then(data => { console.log(i); i != 8 ? montaLista(data) : finalizaLista(data) });
     }
 }
 
 async function animes(num) {
-    const base_url = "https://api.jikan.moe/v4";
-
     var teste = await fetch(`${base_url}/anime/${num}`);
     return await teste.json();
 }
 
 function montaLista(data) {
-    if (data.status != ERROR_NOT_FOUND && data.status != 429) {
-        data.data.genres.forEach((value) => { if (value.name == 'Hentai') { data.data.images.jpg.image_url = null; } });
-    }
-    listAnime += '<div class="item">' +
-        '<div style="background-image: url(' + trataDataImage(data) + ');">' +
-        '</div>' +
-        '</div>';
-
+    makeListAnime(data);
     let number = parseInt($('.texto-loader').text());
     $('.texto-loader').text(number - 1);
 }
 
-function finalizaLista(data) {
+function makeListAnime(data) {
+    let animeId;
+
+    if (![ERROR_NOT_FOUND, ERROR_TO_MUCH_REQUEST, ERROR_INTERNAL_SERVER].includes(parseInt(data.status))) {
+        animeId = data.data.mal_id;
+        data.data.genres.forEach((value) => { if (value.name == 'Hentai') { data.data.images.jpg.image_url = null; } });
+    } else {
+        animeId = '11061';
+    }
+
     listAnime += '<div class="item">' +
-        '<div style="background-image: url(' + trataDataImage(data) + ');">' +
+        '<div style="background-image: url(' + trataDataImage(data) + ');"  data-show-modal data-id-anime="' + animeId + '" >' +
         '</div>' +
         '</div>';
+
+}
+
+function finalizaLista(data) {
+    makeListAnime(data);
     montaElemento();
 }
 
 function trataDataImage(data) {
-    if (data.status == 429 || data.status == ERROR_NOT_FOUND) {
+    if ([ERROR_NOT_FOUND, ERROR_TO_MUCH_REQUEST, ERROR_INTERNAL_SERVER].includes(parseInt(data.status))) {
         return './img/mini-1.png';
     }
     return (data.data.images.jpg.image_url == null ? './img/mini-1.png' : data.data.images.jpg.image_url);
@@ -142,7 +150,7 @@ $('.nav-toggle').on('click', function () {
     $('nav').slideToggle();
 })
 
-function testes() {
+function showText() {
     $(".subtitulo").hover(function () {
         $(".text").animate({
             left: "+=50",
@@ -152,5 +160,57 @@ function testes() {
 }
 
 $(document).on("click", '[data-close-modal]', function () {
-    $(".modal").hide();
+    if ($(window).width() > 650) {
+        $(".modal").fadeToggle("slow");
+    }
 })
+
+$(document).on("click", '[data-show-modal]', async function () {
+    if ($(window).width() > 650) {
+        let animeId = $(this).data('id-anime');
+        await getAnimeById(animeId).then(data => { makeContentModal(data) });
+        $(".modal").fadeToggle("slow");
+    }
+})
+
+async function getAnimeById(animeId) {
+    var teste = await fetch(`${base_url}/anime/${animeId}`);
+    return await teste.json();
+}
+
+function makeContentModal(data) {
+    setBackgroundImage(data);
+    setAnimeTitle(data.data);
+    setAnimeDataAiring(data.data);
+    setAnimeSynopsis(data.data);
+    setAnimeGenres(data.data);
+}
+
+function setBackgroundImage(data) {
+    $(".modal-top").css("background-image", 'url(' + trataDataImage(data) + ')')
+}
+
+function setAnimeTitle(data) {
+    $(".anime-title").text(data.title);
+}
+
+function setAnimeDataAiring(data) {
+    $('.date').text(data.aired.string);
+}
+
+function setAnimeSynopsis(data) {
+    $('.sinopse-modal').text(data.synopsis);
+}
+
+function setAnimeGenres(data) {
+    let genres = data.genres.map((value) => value.name);
+    $('.themes').text("Generos : " + genres.join(', ') + ".");
+}
+
+$(document).keydown(function (event) {
+    if (event.keyCode == 27) {
+        if ($(".modal").is(":visible")) {
+            $(".modal").fadeToggle("slow");
+        }
+    }
+});

@@ -67,7 +67,7 @@
                             <i class="fa-solid fa-play"></i>
                             ASSISTIR AGORA
                         </button>
-                        <button role="button" class="button">
+                        <button role="button" class="button" data-show-modal data-id-anime="21">
                             <i class="fa-solid fa-info-circle"></i>
                             MAIS INFORMAÇÕES
                         </button>
@@ -82,18 +82,18 @@
         </div>
 
 
-        <div class="modal">
+        <div class="modal" style="display: none;">
             <div class="modal-content">
                 <div class="container">
                     <div class="modal-top">
-                        <div class="leave-block">                            
-                            <button role="button" class="button-circle" data-close-modal>
+                        <div class="leave-block">
+                            <button role="button" class="button-circle close-modal"
+                                data-close-modal>
                                 <i class="fa-solid fa-x"></i>
                             </button>
                         </div>
                         <div class="title-block">
                             <div class="anime-title">
-                                One Piece
                             </div>
                         </div>
                         <div class="buttons">
@@ -107,6 +107,18 @@
                             <button role="button" class="button-circle">
                                 <i class="fa-solid fa-thumbs-up"></i>
                             </button>
+                        </div>
+                    </div>
+                    <div class="modal-down">
+                        <div class="container-right">
+                            <div class="date">
+                            </div>
+                            <div class="sinopse-modal">
+                            </div>
+                        </div>
+                        <div class="container-left">
+                            <div class="themes">
+                            </div>
                         </div>
                     </div>
                 </div>
