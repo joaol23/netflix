@@ -70,26 +70,24 @@ function windowScroll() {
 
 async function makeListAnimes() {
     for (i = 1; i <= 8; i++) {
-        var number = Math.floor(Math.random() * 2500) + 100;
-
+        var number = Math.floor(Math.random() * 3500) + 100;
         await animes(number).then(data => { console.log(i); i != 8 ? montaLista(data) : finalizaLista(data) });
     }
 }
 
 async function animes(num) {
-    const base_url = "https://api.jikan.moe/v3";
+    const base_url = "https://api.jikan.moe/v4";
 
     var teste = await fetch(`${base_url}/anime/${num}`);
     return await teste.json();
 }
 
 function montaLista(data) {
-    console.log(data.genres);
-    if (data.status != ERROR_NOT_FOUND) {
-        data.genres.forEach((value) => { if (value.name == 'Hentai') { data.image_url = null; } });
+    if (data.status != ERROR_NOT_FOUND && data.status != 429) {
+        data.data.genres.forEach((value) => { if (value.name == 'Hentai') { data.data.images.jpg.image_url = null; } });
     }
     listAnime += '<div class="item">' +
-        '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
+        '<div style="background-image: url(' + trataDataImage(data) + ');">' +
         '</div>' +
         '</div>';
 
@@ -99,14 +97,17 @@ function montaLista(data) {
 
 function finalizaLista(data) {
     listAnime += '<div class="item">' +
-        '<div style="background-image: url(' + trataDataImage(data.image_url) + ');">' +
+        '<div style="background-image: url(' + trataDataImage(data) + ');">' +
         '</div>' +
         '</div>';
     montaElemento();
 }
 
-function trataDataImage(image) {
-    return (image == null ? './img/mini-1.png' : image);
+function trataDataImage(data) {
+    if (data.status == 429 || data.status == ERROR_NOT_FOUND) {
+        return './img/mini-1.png';
+    }
+    return (data.data.images.jpg.image_url == null ? './img/mini-1.png' : data.data.images.jpg.image_url);
 }
 
 function trataToggle() {
@@ -149,4 +150,6 @@ function testes() {
     })
 }
 
-testes();
+$(document).on("click", '[data-close-modal]', function () {
+    $(".modal").hide();
+})
