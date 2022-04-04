@@ -74,7 +74,7 @@ function windowScroll() {
 async function makeListAnimes() {
     for (i = 1; i <= 8; i++) {
         var number = Math.floor(Math.random() * 3500) + 100;
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, 1000));
         await animes(number).then(data => { console.log(i); i != 8 ? montaLista(data) : finalizaLista(data) });
     }
 }
